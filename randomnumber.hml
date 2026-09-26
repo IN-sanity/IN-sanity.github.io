@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Number Generator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            color: #333;
+        }
+        .container {
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 350px;
+            width: 100%;
+        }
+        h1 { margin-top: 0; color: #4a5568; }
+        .input-group {
+            display: flex;
+            justify-content: space-between;
+            margin: 1.5rem 0;
+            gap: 10px;
+        }
+        .input-field {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 48%;
+        }
+        label { font-size: 0.85rem; color: #718096; margin-bottom: 0.3rem; font-weight: 600; }
+        input {
+            width: 100%;
+            padding: 0.6rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            outline: none;
+        }
+        input:focus { border-color: #667eea; }
+        #result {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #667eea;
+            margin: 1.5rem 0;
+            min-height: 5.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s;
+        }
+        button:hover { background: #5a67d8; }
+        button:active { transform: scale(0.98); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>RNG Generator</h1>
+    
+    <div class="input-group">
+        <div class="input-field">
+            <label for="min">Min</label>
+            <input type="number" id="min" value="1">
+        </div>
+        <div class="input-field">
+            <label for="max">Max</label>
+            <input type="number" id="max" value="100">
+        </div>
+    </div>
+
+    <div id="result">100</div>
+
+    <button onclick="generateRandomNumber()">Generate</button>
+</div>
+
+<script>
+    function generateRandomNumber() {
+        const min = parseInt(document.getElementById('min').value);
+        const max = parseInt(document.getElementById('max').value);
+        const resultDisplay = document.getElementById('result');
+
+        // Validation checks
+        if (isNaN(min) || isNaN(max)) {
+            resultDisplay.style.fontSize = '1.5rem';
+            resultDisplay.textContent = 'Enter valid numbers';
+            return;
+        }
+        if (min > max) {
+            resultDisplay.style.fontSize = '1.5rem';
+            resultDisplay.textContent = 'Min cannot exceed Max';
+            return;
+        }
+
+        resultDisplay.style.fontSize = '3.5rem';
+        
+        // Simple roll animation effect
+        let counter = 0;
+        const interval = setInterval(() => {
+            const tempRandom = Math.floor(Math.random() * (max - min + 1)) + min;
+            resultDisplay.textContent = tempRandom;
+            counter++;
+            
+            if (counter > 10) {
+                clearInterval(interval);
+                // Final true random calculation
+                const finalRandom = Math.floor(Math.random() * (max - min + 1)) + min;
+                resultDisplay.textContent = finalRandom;
+            }
+        }, 40);
+    }
+</script>
+
+</body>
+</html>
