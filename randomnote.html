@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Number Generator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            color: #333;
+        }
+        .container {
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 350px;
+            width: 100%;
+        }
+        h1 { margin-top: 0; color: #4a5568; }
+        .input-group {
+            display: flex;
+            justify-content: space-between;
+            margin: 1.5rem 0;
+            gap: 10px;
+        }
+        .input-field {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 48%;
+        }
+        label { font-size: 0.85rem; color: #718096; margin-bottom: 0.3rem; font-weight: 600; }
+        input {
+            width: 100%;
+            padding: 0.6rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            outline: none;
+        }
+        input:focus { border-color: #667eea; }
+        #result {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #667eea;
+            margin: 1.5rem 0;
+            min-height: 5.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s;
+        }
+        button:hover { background: #5a67d8; }
+        button:active { transform: scale(0.98); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>RNG Generator</h1>
+    
+    <div class="input-group">
+        <div class="input-field">
+            <label for="min">Min</label>
+            <input type="number" id="min" value="1">
+        </div>
+        <div class="input-field">
+            <label for="max">Max</label>
+            <input type="number" id="max" value="100">
+        </div>
+    </div>
+
+    <img id="random-image" src="" alt="Randomized Selection" style="max-width: 100%; height: auto;">
+
+    <button onclick="generateRandomNumber()">Generate</button>
+</div>
+
+<script>
+    const folderPath = "Captures/";
+    const images = ["A1_Bass.png", "A2_Bass.png", "A3_Bass.png", "A3_Treble.png", "A4_Treble.png", "A5_Treble.png", "B1_Bass.png", "B2_Bass.png", "B3_Bass.png", "B3_Treble.png", "B4_Treble.png", "B5_Treble.png", "C2_Bass.png", "C3_Bass.png", "C4_Bass.png", "C4_Treble.png", "C5_Treble.png", "C6_Treble.png", "D2_Bass.png", "D3_Bass.png", "D4_Bass.png", "D4_Treble.png", "D5_Treble.png", "D6_Treble.png", "E2_Bass.png", "E3_Bass.png", "E4_Bass.png", "E4_Treble.png", "E5_Treble.png", "E6_Treble.png", "F2_Bass.png", "F3_Bass.png", "F3_Treble.png", "F4_Bass.png", "F4_Treble.png", "F5_Treble.png", "F6_Treble.png", "G2_Bass.png", "G3_Bass.png", "G3_Treble.png", "G4_Treble.png", "G5_Treble.png"];
+
+      
+    function generateRandomNumber() {
+        const randomIndex = Math.floor(Math.random() * images.length);
+        const selectedImage = folderPath + images[randomIndex];
+        document.getElementById("random-image").src = selectedImage;
+    }
+</script>
+
+</body>
+</html>
